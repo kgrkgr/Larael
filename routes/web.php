@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Middleware\FirstMiddleware;
 
-Route::get('/', function () {
-    return view('index');
-});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +17,5 @@ Route::get('/', function () {
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/test',function(){
-    return 'test';
-});
+Route::get('/', [TestController::class, 'index']);
+Route::post('/', [TestController::class, 'post'])->middleware(FirstMiddleware::class);
